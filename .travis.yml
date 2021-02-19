@@ -1,7 +1,7 @@
 language: generic
 env:
   global:
-  # Set defaults to avoid repeating in most cases
+  # Set defaults to avoid repeating in most cases  
   - PYTHON_VERSION=$TRAVIS_PYTHON_VERSION
   - MAIN_CMD='python setup.py'
   - CONDA_DEPENDENCIES='sphinx pillow pyproj coveralls coverage mock aggdraw six pyshp pyresample'
