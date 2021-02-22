@@ -27,20 +27,39 @@ matrix:
     os: linux
     dist: bionic
     arch: ppc64le
-install:
+before_install:
   - if [[ "$TRAVIS_CPU_ARCH" == "ppc64le" ]]; then 
-       wget  https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-ppc64le.sh;
-       sh Miniconda3-latest-Linux-ppc64le.sh -u -b ;
-       pip install coverage --no-cache-dir;
-       pip install pyresample --no-cache-dir;
-       pip install pytest --no-cache-dir;
-       pip install pyproj==1.9.6 --no-cache-dir;
-       pip install --no-deps -e .;
+        wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-ppc64le.sh -O miniconda.sh;
     else
-       git clone --depth 1 git://github.com/astropy/ci-helpers.git;
-       source ci-helpers/travis/setup_conda.sh;
-       pip install --no-deps -e .;
+        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
     fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes
+  - conda config --set auto_update_conda False
+  - conda update -q --all
+  - conda install python=$PYTHON_VERSION pip
+  #- if [[ "$TRAVIS_CPU_ARCH" == "ppc64le" ]]; then 
+  # wget  https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-ppc64le.sh;
+  # sh Miniconda3-latest-Linux-ppc64le.sh -u -b ;
+     #  pip install coverage --no-cache-dir;
+     #  pip install pyresample --no-cache-dir;
+     #  pip install pytest --no-cache-dir;
+     #  pip install pyproj==1.9.6 --no-cache-dir;
+     #  pip install --no-deps -e .;
+   # else
+    #   git clone --depth 1 git://github.com/astropy/ci-helpers.git;
+     #  source ci-helpers/travis/setup_conda.sh;
+    #   pip install --no-deps -e .;
+   # fi
+install:
+#    - pip   install aggdraw --no-cache-dir
+    - conda install coverage coveralls
+    - conda install mock pillow pyproj
+    - pip   install pyresample --no-cache-dir 
+    - conda install pyshp sphinx
+    - pip   install pycoast --no-cache-dir 
 script:
 - coverage run --source=pycoast setup.py test
 after_success:
