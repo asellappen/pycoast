@@ -56,7 +56,8 @@ before_install:
 install:
 #    - pip   install aggdraw --no-cache-dir
     - conda install coverage coveralls
-    - conda install mock pillow pyproj
+    - conda install mock pillow 
+    - pip install pyproj==1.9.6 --no-cache-dir
     - pip   install pyresample --no-cache-dir 
     - conda install pyshp sphinx
     - pip   install pycoast --no-cache-dir 
