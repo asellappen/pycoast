@@ -44,7 +44,8 @@ install:
   - pip   install aggdraw --no-cache-dir
   - conda install coverage
   - conda install coveralls
-  - conda install mock pillow pyproj
+  - conda install mock pillow 
+  - pip install pyproj --no-cache-dir
   - pip   install pyresample --no-cache-dir 
   - conda install pyshp sphinx
   - pip install --no-deps -e .
