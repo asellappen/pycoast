@@ -35,12 +35,11 @@ before_install:
     fi
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
- # - hash -r
- # - conda config --set always_yes yes
- # - conda config --set auto_update_conda False
+  - hash -r
+  - conda config --set always_yes yes
+  - conda config --set auto_update_conda False
   - conda update -q --all
   - conda install python=$PYTHON_VERSION pip
-
 install:
   - pip   install aggdraw --no-cache-dir
   - conda install coverage
