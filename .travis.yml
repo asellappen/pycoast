@@ -51,9 +51,8 @@ install:
   - pip install --no-deps -e .
   
 script:
-#- coverage run --source=pycoast setup.py test
- - cd pycoast
- - coverage run --source=pycoast setup.py test
+  - coverage run --source=pycoast setup.py test
+
  
 after_success:
 - if [[ $PYTHON_VERSION == 3.6 ]]; then coveralls; fi
