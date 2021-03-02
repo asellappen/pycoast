@@ -36,7 +36,7 @@ before_install:
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
-  - conda clean -q --all 
+  - conda clean --yes --all
   - conda config --set always_yes yes
   - conda config --set auto_update_conda False
   - conda update -q --all
